@@ -63,9 +63,9 @@ class ViewController: UIViewController {
   var round: Int = 1
   var points: Int = 0
   
-  @IBAction func showNextScreen() {
-    self.present(secondViewController, animated: true, completion: nil)
-  }
+//  @IBAction func showNextScreen() {
+//    self.present(secondViewController, animated: true, completion: nil)
+//  }
   
   @IBAction func checkNumber() {
       // if game just begins
