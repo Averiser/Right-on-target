@@ -19,10 +19,11 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    let generator = NumberGenerator(startValue: 1, endValue: 50)!
 // create an instance of essence Game
-    game = Game(startValue: 1, endValue: 50, rounds: 5)
+    game = Game(valueGenerator: generator, rounds: 5)
     // update value of secret number
-    updateLabelWithSecretNumber(newText: String(game.currentSecretValue))
+    updateLabelWithSecretNumber(newText: String(game.currentRound.currentSecretValue))
   }
   
   // MARK: - Interlocking View - Model
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
   @IBAction func checkNumber() {
 
     // Calculate points per round
-    game.calculateScore(with: Int(slider.value))
+    game.currentRound.calculateScore(with: Int(slider.value))
     // Check whether game is over or not
     if game.isGameEnded {
       showAlertWith(score: game.score)
@@ -39,21 +40,9 @@ class ViewController: UIViewController {
       game.startNewRound()
     }
     // Update current secret number
-    updateLabelWithSecretNumber(newText: String(game.currentSecretValue))
+    updateLabelWithSecretNumber(newText: String(game.currentRound.currentSecretValue))
   }
   
-  
-//  lazy var secondViewController: SecondViewController = getSecondViewController()
-//
-//  private func getSecondViewController() -> SecondViewController {
-//    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//    let viewController = storyboard.instantiateViewController(withIdentifier: "SecondViewController")
-//    return viewController as! SecondViewController
-//  }
-  
-//  var number: Int = 0
-//  var round: Int = 1
-//  var points: Int = 0
 
 // MARK: - Updating View
   
